@@ -47,7 +47,7 @@ Version avancée :
 - Mode solo ou coopératif contre des ennemis contrôlés par une IA (recherche de chemin en BFS sur la grille)
 - Mode mort subite : l'arène rétrécit au bout d'un certain temps
 - Boss en fin de mode coopératif
-- Jusqu'à 4 joueurs
+- Jusqu'à 2 joueurs
 
 ORGANISATION DU CODE
 
