@@ -1,0 +1,61 @@
+PRESENTATION
+
+Blast Arena est un jeu d'arcade multijoueur en local, développé en langage C avec la bibliothèque Allegro 5. Le jeu se joue avec des joysticks d'arcade, avec le clavier en secours.
+
+Chaque joueur contrôle un personnage dans une arène vue de dessus, découpée en cases. Les joueurs posent des bombes qui explosent en croix, détruisent les murs cassables, ramassent des bonus et cherchent à éliminer leurs adversaires. Le dernier joueur en vie remporte la manche. La partie se joue en plusieurs manches gagnantes.
+
+OBJECTIFS DU PROJET
+
+Réaliser un jeu complet et jouable en C, avec une architecture modulaire.
+Gérer les entrées joystick et clavier avec Allegro 5.
+Travailler en équipe de 4 avec Git et GitHub.
+Proposer des fonctionnalités progressives, d'une version de base jouable jusqu'à des fonctionnalités avancées.
+
+REGLES DU JEU
+
+L'arène est composée de murs fixes, de murs cassables et de cases vides.
+Un joueur peut poser une bombe sur sa case. Elle explose après environ 3 secondes.
+L'explosion se propage en croix selon la portée de la bombe. Elle s'arrête sur les murs fixes et détruit les murs cassables.
+Un joueur touché par une explosion est éliminé de la manche.
+Une bombe touchée par une explosion explose immédiatement, ce qui permet des réactions en chaîne.
+Les murs cassables peuvent laisser apparaître des bonus.
+Le dernier survivant gagne la manche.
+
+COMMANDES
+
+Joystick : déplacement du personnage.
+Bouton principal : poser une bombe.
+Bouton start : pause.
+Clavier (secours) : touches directionnelles ou ZQSD pour se déplacer, espace ou entrée pour poser une bombe, échap pour la pause.
+
+FONCTIONNALITES
+
+Version de base :
+- Arène avec murs fixes et murs cassables
+- 2 joueurs jouables au joystick
+- Pose de bombes, explosions en croix, élimination des joueurs
+- Gestion des manches et des scores
+- Menu principal, pause et écran de victoire
+
+Version intermédiaire :
+- Bonus : portée de bombe augmentée, bombe supplémentaire, vitesse, bouclier
+- Plusieurs arènes chargées depuis des fichiers texte
+- Sprites animés et effets sonores
+- Sauvegarde du tableau des scores dans un fichier
+
+Version avancée :
+- Mode solo ou coopératif contre des ennemis contrôlés par une IA (recherche de chemin en BFS sur la grille)
+- Mode mort subite : l'arène rétrécit au bout d'un certain temps
+- Boss en fin de mode coopératif
+- Jusqu'à 4 joueurs
+
+ORGANISATION DU CODE
+
+main.c : initialisation, boucle principale, machine à états
+entrees.c / entrees.h : gestion du clavier et des joysticks
+arene.c / arene.h : grille, chargement des niveaux, affichage de l'arène
+joueur.c / joueur.h : joueurs, déplacements, collisions
+bombe.c / bombe.h : bombes et explosions
+bonus.c / bonus.h : apparition et effets des bonus
+ia.c / ia.h : ennemis et recherche de chemin
+interface.c /
