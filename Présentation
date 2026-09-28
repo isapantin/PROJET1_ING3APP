@@ -59,3 +59,5 @@ bombe.c / bombe.h : bombes et explosions
 bonus.c / bonus.h : apparition et effets des bonus
 ia.c / ia.h : ennemis et recherche de chemin
 interface.c /
+
+charger les maps depuis des fichiers pour en télécharger des nouvelles
