@@ -32,7 +32,7 @@ FONCTIONNALITES
 
 Version de base :
 - Arène avec murs fixes et murs cassables
-- 2 joueurs jouables au joystick
+- 2 joueurs jouables au joystick (d'abord faire le jeu avec commande clavier puis voir joystick)
 - Pose de bombes, explosions en croix, élimination des joueurs
 - Gestion des manches et des scores
 - Menu principal, pause et écran de victoire
