@@ -1,61 +1,51 @@
-PRESENTATION
+Nom provisoire : à définir par l'équipe
+Type : jeu d'aventure et de combat en 2D, vue de dessus
+Langage : C, avec la bibliothèque Allegro 5
+Équipe : 4 étudiants ING3, ECE Lyon
+Contrôles : manette uniquement
 
-Blast Arena est un jeu d'arcade multijoueur en local, développé en langage C avec la bibliothèque Allegro 5. Le jeu se joue avec des joysticks d'arcade, avec le clavier en secours.
+Le joueur incarne un personnage qui explore un monde paisible et coloré (type animal crossing) , dans l'esprit d'un village façon Animal Crossing. Il ramasse des ressources (pommes, bois, pierres, fleurs...) et rencontre des personnages non-joueurs (PNJ). Interagir avec un PNJ déclenche un combat au tour par tour, inspiré de Dofus. Les ressources récoltées s'échangent contre des armes de plus en plus puissantes, et la nourriture permet de récupérer ou d'augmenter ses points de vie. La partie peut être sauvegardée et reprise.
 
-Chaque joueur contrôle un personnage dans une arène vue de dessus, découpée en cases. Les joueurs posent des bombes qui explosent en croix, détruisent les murs cassables, ramassent des bonus et cherchent à éliminer leurs adversaires. Le dernier joueur en vie remporte la manche. La partie se joue en plusieurs manches gagnantes.
 
-OBJECTIFS DU PROJET
+BOUCLE DE JEU
 
-Réaliser un jeu complet et jouable en C, avec une architecture modulaire.
-Gérer les entrées joystick et clavier avec Allegro 5.
-Travailler en équipe de 4 avec Git et GitHub.
-Proposer des fonctionnalités progressives, d'une version de base jouable jusqu'à des fonctionnalités avancées.
+ Le joueur explore la carte et ramasse des ressources.
 
-REGLES DU JEU
+ Il rencontre un PNJ et interagit avec lui : un combat démarre.
 
-L'arène est composée de murs fixes, de murs cassables et de cases vides.
-Un joueur peut poser une bombe sur sa case. Elle explose après environ 3 secondes.
-L'explosion se propage en croix selon la portée de la bombe. Elle s'arrête sur les murs fixes et détruit les murs cassables.
-Un joueur touché par une explosion est éliminé de la manche.
-Une bombe touchée par une explosion explose immédiatement, ce qui permet des réactions en chaîne.
-Les murs cassables peuvent laisser apparaître des bonus.
-Le dernier survivant gagne la manche.
+ S'il gagne, il obtient des récompenses (ressources rares, pièces).
 
-COMMANDES
+ Il échange ses ressources chez le marchand contre de meilleures armes.
 
-Joystick : déplacement du personnage.
-Bouton principal : poser une bombe.
-Bouton start : pause.
-Clavier (secours) : touches directionnelles ou ZQSD pour se déplacer, espace ou entrée pour poser une bombe, échap pour la pause.
+ Il mange pour garder ses points de vie et affronte des PNJ plus forts.
 
-FONCTIONNALITES
+ Il sauvegarde sa progression.
 
-Version de base :
-- Arène avec murs fixes et murs cassables
-- 2 joueurs jouables au joystick (d'abord faire le jeu avec commande clavier puis voir joystick)
-- Pose de bombes, explosions en croix, élimination des joueurs
-- Gestion des manches et des scores
-- Menu principal, pause et écran de victoire
+C
 
-Version intermédiaire :
-- Bonus : portée de bombe augmentée, bombe supplémentaire, vitesse, bouclier
-- Plusieurs arènes chargées depuis des fichiers texte
-- Sprites animés et effets sonores
-- Sauvegarde du tableau des scores dans un fichier
+Action
 
-Version avancée :
-- Mode solo ou coopératif contre des ennemis contrôlés par une IA (recherche de chemin en BFS sur la grille)
-- Mode mort subite : l'arène rétrécit au bout d'un certain temps
-- Boss en fin de mode coopératif
-- Jusqu'à 2 joueurs
+Bouton
 
-ORGANISATION DU CODE
+Se déplacer :
 
-main.c : initialisation, boucle principale, machine à états
-entrees.c / entrees.h : gestion du clavier et des joysticks
-arene.c / arene.h : grille, chargement des niveaux, affichage de l'arène
-joueur.c / joueur.h : joueurs, déplacements, collisions
-bombe.c / bombe.h : bombes et explosions
-bonus.c / bonus.h : apparition et effets des bonus
-ia.c / ia.h : ennemis et recherche de chemin
-interface.c /
+Stick gauche ou croix
+
+Interagir, valider :
+
+Bouton A (ou bouton 1)
+
+Retour, annuler :
+
+Bouton B (ou bouton 2)
+
+Ouvrir l'inventaire :
+
+Bouton X (ou bouton 3)
+
+Pause, menu :
+
+Start
+
+Les numéros de boutons varient selon les manettes, donc ils sont regroupés dans un seul fichier de configuration pour être faciles à modifier. Le clavier sert uniquement pour les tests pendant le développement, et sera désactivé dans la version finale.
+
