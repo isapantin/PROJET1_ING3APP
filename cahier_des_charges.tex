@@ -54,14 +54,14 @@
 \section{Présentation}
 
 \begin{itemize}
-    \item \textbf{Nom provisoire :} à définir par l'équipe
+    \item \textbf{Nom :} ING1 SURVIVOR
     \item \textbf{Type :} jeu d'aventure et de combat en 2D, vue de dessus
     \item \textbf{Langage :} C, avec la bibliothèque Allegro 5
     \item \textbf{Équipe :} 4 étudiants ING3, ECE Lyon
     \item \textbf{Contrôles :} manette uniquement (en théorie tests avec commandes clavier)
 \end{itemize}
 
-Le joueur est un personnage qui explore un monde, dans l'esprit d'un village façon Animal Crossing. Il ramasse des ressources (pommes, bois, pierres, fleurs...) et rencontre des personnages non-joueurs (PNJ). Interagir avec un PNJ déclenche un combat au tour par tour, inspiré de Dofus. Les ressources récoltées s'échangent contre des armes de plus en plus puissantes, et la nourriture permet de récupérer ou d'augmenter ses points de vie. La partie peut être sauvegardée et reprise.
+Le joueur est un personnage qui explore un monde représentant l'année d'ING1, dans l'esprit d'un village qui représenterait l'école dans laquelle on peut se déplacer. Il ramasse des ressources (cahier, stylo, ordi, cours, cookies, café...) et rencontre des personnages non-joueurs (PNJ) qui seraient les professeurs de l'ECE et les personnes de l'adminstration. Interagir avec un PNJ déclenche un combat au tour par tour, inspiré de Dofus. Les ressources récoltées s'échangent contre des armes de plus en plus puissantes, et la nourriture permet de récupérer ou d'augmenter ses points de vie. La partie peut être sauvegardée et reprise.
 
 % ---------------- 2 ----------------
 \section{Objectifs du projet}
@@ -93,15 +93,15 @@ Le joueur est un personnage qui explore un monde, dans l'esprit d'un village fa�
 
 \subsection{Exploration et caméra}
 \begin{itemize}
-    \item Carte construite en tuiles (herbe, chemin, eau, arbres, maisons...), chargée depuis un fichier texte
+    \item Carte construite en tuiles (sol, mur, salles de cours...), chargée depuis un fichier texte
     \item Le personnage reste au centre de l'écran, c'est la carte qui défile autour de lui
     \item Déplacement fluide dans les 4 directions, avec le stick ou la croix de la manette
-    \item Collisions avec les obstacles (eau, arbres, murs, PNJ)
+    \item Collisions avec les obstacles ( murs, PNJ)
 \end{itemize}
 
 \subsection{Ressources et ramassage}
 \begin{itemize}
-    \item Des objets sont posés sur la carte : pommes, champignons, bois, pierres, fleurs, etc.
+    \item Des objets sont posés sur la carte : stylo, cahier, ordi, cours, cookie, café, redbull etc.
     \item Le joueur les ramasse en passant dessus ou en appuyant sur le bouton d'action
     \item Les objets ramassés vont dans l'inventaire
     \item Les ressources réapparaissent après un certain temps (option)
@@ -112,13 +112,12 @@ Le joueur est un personnage qui explore un monde, dans l'esprit d'un village fa�
     \item Menu ouvert avec un bouton de la manette
     \item Affiche les objets possédés et leur quantité, sous forme de grille
     \item Navigation à la manette, avec possibilité d'utiliser un objet (manger une pomme, par exemple)
-    \item Affiche l'arme équipée et ses statistiques
-\end{itemize}
+    \item Affiche l'arme équipée
 
 \subsection{Nourriture et points de vie}
 \begin{itemize}
     \item Le joueur a des points de vie (PV) et un maximum de PV
-    \item Manger un aliment redonne des PV (par exemple pomme +10, champignon +20)
+    \item Manger un aliment redonne des PV (par exemple cookie +10, café +20)
     \item Certains aliments rares augmentent définitivement le maximum de PV
     \item On peut manger pendant l'exploration ou pendant un combat, ce qui consomme un tour
 \end{itemize}
@@ -143,8 +142,8 @@ Le joueur est un personnage qui explore un monde, dans l'esprit d'un village fa�
 
 \subsection{Échange et armes}
 \begin{itemize}
-    \item Le marchand propose des armes contre des ressources (par exemple épée en bois = 5 bois)
-    \item Les armes ont des niveaux : bois, pierre, fer, cristal...
+    \item Le marchand propose des armes contre des ressources (par exemple cours avancé = 5 cours basiques)
+    \item Les armes ont des niveaux : Chapitre, note...
     \item Une arme peut être améliorée en donnant des ressources, ce qui augmente ses dégâts
     \item Le joueur équipe l'arme de son choix dans l'inventaire
 \end{itemize}
@@ -161,7 +160,7 @@ Le joueur est un personnage qui explore un monde, dans l'esprit d'un village fa�
 \begin{itemize}
     \item Menu principal, menu pause, écran de game over
     \item HUD en exploration : barre de vie, arme équipée
-    \item Messages à l'écran : \og Vous avez ramassé 1 pomme \fg{}, \og Victoire ! \fg{}, etc.
+    \item Messages à l'écran : \og Vous avez ramassé 1 cookie \fg{}, \og Victoire ! \fg{}, etc.
 \end{itemize}
 
 \subsection{Contrôles manette}
