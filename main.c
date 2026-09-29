@@ -2,7 +2,6 @@
 #include "jeu.h"
 
 int main(void) {
-
     // Initialisation d'Allegro
     assert(al_init());
     assert(al_init_primitives_addon());
@@ -17,16 +16,21 @@ int main(void) {
     bool fini = false;
 
     while (!fini) {
-
         al_wait_for_event(jeu.queue, &event);
 
         if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             fini = true;
         }
+
+        if (event.type == ALLEGRO_EVENT_TIMER)
+        {
+           afficherJeu(&jeu);
+            al_flip_display();
+        }
     }
 
-    // Libération
-    libererJeu(&jeu);
+        // Libération
+        libererJeu(&jeu);
 
-    return 0;
-}
+        return 0;
+    }

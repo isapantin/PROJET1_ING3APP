@@ -12,4 +12,6 @@ typedef struct {
 void initialiserJeu(Jeu *jeu);
 void libererJeu(Jeu *jeu);
 
+void afficherJeu(Jeu *jeu);
+
 #endif

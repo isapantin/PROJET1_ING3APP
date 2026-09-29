@@ -36,3 +36,10 @@ void libererJeu(Jeu *jeu) {
     al_destroy_event_queue(jeu->queue);
     al_destroy_display(jeu->fenetre);
 }
+
+void afficherJeu(Jeu *jeu)
+{
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+
+    al_flip_display();
+}
