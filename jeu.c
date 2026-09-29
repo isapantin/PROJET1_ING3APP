@@ -1,4 +1,6 @@
 #include "jeu.h"
+#include "ecranAcceuil.h"
+#include "variable.h"
 #include <assert.h>
 
 
@@ -7,6 +9,11 @@ void initialiserJeu(Jeu *jeu)
     // Initialisation d'Allegro
     assert(al_init());
     assert(al_install_keyboard());
+    assert(al_install_mouse());
+
+    al_init_primitives_addon();
+    al_init_font_addon();
+
     assert(al_init_image_addon());
 
 

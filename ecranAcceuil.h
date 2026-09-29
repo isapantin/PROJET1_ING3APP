@@ -1,17 +1,15 @@
-//
-// Created by kenza on 29/09/2026.
-//
-
 #ifndef ECRANACCEUIL_H
 #define ECRANACCEUIL_H
 
-// AJOUT
-#include "jeu.h"
+#include <allegro5/allegro.h>
 
-// AJOUT
+// On indique simplement que Jeu existe
+typedef struct Jeu Jeu;
+
+
 void afficherEcranAccueil(Jeu *jeu);
 
-// AJOUT
 void gererEcranAccueil(Jeu *jeu, ALLEGRO_EVENT *event);
 
-#endif //ECRANACCEUIL_H
+
+#endif

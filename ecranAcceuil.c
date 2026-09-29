@@ -1,9 +1,8 @@
-//
-// Created by kenza on 29/09/2026.
-//
+
 
 #include "ecranAcceuil.h"
-
+#include "jeu.h"
+#include "Variable.h"
 // AJOUT
 void afficherEcranAccueil(Jeu *jeu)
 {
@@ -209,7 +208,7 @@ void gererEcranAccueil(Jeu *jeu, ALLEGRO_EVENT *event)
             y <= 600)
         {
             // AJOUT
-            jeu->etat = -1;
+            jeu->etat = ECRAN_QUITTER;;
         }
     }
 }

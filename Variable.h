@@ -11,11 +11,14 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
-#include "joueur.h"
+
+#include "jeu.h"
 #include "ecranAcceuil.h"
+
 
 #define LARGEUR 1400
 #define HAUTEUR 900
 #define FPS 60
+
 
 #endif

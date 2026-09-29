@@ -3,23 +3,25 @@
 
 #include <stdbool.h>
 #include <allegro5/allegro.h>
-#include "variable.h"
+
 #include "joueur.h"
 
 
-// permet de savoir sur quel écran on se trouve
-typedef enum {
-    ECRAN_ACCUEIL,
-    ECRAN_JEU
-} EtatJeu;
-
-typedef struct {
-#define LARGEUR_ECRAN 1200
-#define HAUTEUR_ECRAN 800
+#define LARGEUR_ECRAN 1400
+#define HAUTEUR_ECRAN 900
 #define FPS 60
 
 
-typedef struct
+// Permet de savoir sur quel écran on se trouve
+typedef enum
+{
+    ECRAN_ACCUEIL,
+    ECRAN_JEU,
+    ECRAN_QUITTER
+} EtatJeu;
+
+
+typedef struct Jeu
 {
     // Allegro
     ALLEGRO_DISPLAY *fenetre;
@@ -35,15 +37,13 @@ typedef struct
     bool gauche;
     bool droite;
 
-
-    //  écran actuellement affiché
+    // Écran actuellement affiché
     EtatJeu etat;
 
 } Jeu;
 
 
 void initialiserJeu(Jeu *jeu);
-void libererJeu(Jeu *jeu);
 
 void afficherJeu(Jeu *jeu);
 
