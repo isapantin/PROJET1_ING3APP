@@ -1,0 +1,246 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{principal}{RGB}{40,90,160}
+\titleformat{\section}{\Large\bfseries\color{principal}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{principal}}{\thesubsection}{0.5em}{}
+
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Cahier des charges}
+\rhead{ECE Lyon -- ING3}
+\cfoot{\thepage}
+
+\begin{document}
+
+% ---------------- PAGE DE GARDE ----------------
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge\bfseries\color{principal} Cahier des charges\par}
+    \vspace{0.8cm}
+    {\Large Projet informatique en C avec Allegro 5\par}
+    \vspace{0.4cm}
+    {\large Jeu d'aventure et de combat en 2D\par}
+    \vspace{2.5cm}
+    {\large ECE Lyon -- ING3\par}
+    \vspace{1.5cm}
+    {\large\bfseries Équipe\par}
+    \vspace{0.3cm}
+    {\large Nom Prénom 1\\ Nom Prénom 2\\ Nom Prénom 3\\ Nom Prénom 4\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ---------------- 1 ----------------
+\section{Présentation}
+
+\begin{itemize}
+    \item \textbf{Nom provisoire :} à définir par l'équipe
+    \item \textbf{Type :} jeu d'aventure et de combat en 2D, vue de dessus
+    \item \textbf{Langage :} C, avec la bibliothèque Allegro 5
+    \item \textbf{Équipe :} 4 étudiants ING3, ECE Lyon
+    \item \textbf{Contrôles :} manette uniquement
+\end{itemize}
+
+Le joueur incarne un personnage qui explore un monde paisible et coloré, dans l'esprit d'un village façon Animal Crossing. Il ramasse des ressources (pommes, bois, pierres, fleurs...) et rencontre des personnages non-joueurs (PNJ). Interagir avec un PNJ déclenche un combat au tour par tour, inspiré de Dofus. Les ressources récoltées s'échangent contre des armes de plus en plus puissantes, et la nourriture permet de récupérer ou d'augmenter ses points de vie. La partie peut être sauvegardée et reprise.
+
+% ---------------- 2 ----------------
+\section{Objectifs du projet}
+
+\begin{itemize}
+    \item Réaliser un jeu complet et jouable en C avec Allegro 5
+    \item Mettre en place une caméra qui suit le joueur, avec le personnage toujours au centre de l'écran
+    \item Gérer plusieurs modes de jeu : exploration, combat, inventaire, échange, menus
+    \item Gérer la sauvegarde et le chargement des parties
+    \item Utiliser uniquement des manettes comme contrôleur
+    \item Travailler en équipe avec Git et GitHub, avec un code modulaire
+\end{itemize}
+
+% ---------------- 3 ----------------
+\section{Boucle de jeu}
+
+\begin{enumerate}
+    \item Le joueur explore la carte et ramasse des ressources.
+    \item Il rencontre un PNJ et interagit avec lui : un combat démarre.
+    \item S'il gagne, il obtient des récompenses (ressources rares, pièces).
+    \item Il échange ses ressources chez le marchand contre de meilleures armes.
+    \item Il mange pour garder ses points de vie et affronte des PNJ plus forts.
+    \item Il sauvegarde sa progression.
+\end{enumerate}
+
+% ---------------- 4 ----------------
+\section{Fonctionnalités détaillées}
+
+\subsection{Exploration et caméra}
+\begin{itemize}
+    \item Carte construite en tuiles (herbe, chemin, eau, arbres, maisons...), chargée depuis un fichier texte
+    \item Le personnage reste au centre de l'écran, c'est la carte qui défile autour de lui
+    \item Déplacement fluide dans les 4 directions, avec le stick ou la croix de la manette
+    \item Collisions avec les obstacles (eau, arbres, murs, PNJ)
+    \item Animation de marche du personnage selon la direction
+\end{itemize}
+
+\subsection{Ressources et ramassage}
+\begin{itemize}
+    \item Des objets sont posés sur la carte : pommes, champignons, bois, pierres, fleurs, etc.
+    \item Le joueur les ramasse en passant dessus ou en appuyant sur le bouton d'action
+    \item Les objets ramassés vont dans l'inventaire
+    \item Les ressources réapparaissent après un certain temps (option)
+\end{itemize}
+
+\subsection{Inventaire}
+\begin{itemize}
+    \item Menu ouvert avec un bouton de la manette
+    \item Affiche les objets possédés et leur quantité, sous forme de grille
+    \item Navigation à la manette, avec possibilité d'utiliser un objet (manger une pomme, par exemple)
+    \item Affiche l'arme équipée et ses statistiques
+\end{itemize}
+
+\subsection{Nourriture et points de vie}
+\begin{itemize}
+    \item Le joueur a des points de vie (PV) et un maximum de PV
+    \item Manger un aliment redonne des PV (par exemple pomme +10, champignon +20)
+    \item Certains aliments rares augmentent définitivement le maximum de PV
+    \item On peut manger pendant l'exploration ou pendant un combat, ce qui consomme un tour
+\end{itemize}
+
+\subsection{PNJ et déclenchement des combats}
+\begin{itemize}
+    \item Des PNJ sont placés sur la carte, chacun avec un nom, un niveau, des PV, une attaque et des récompenses
+    \item Quand le joueur est à côté d'un PNJ et appuie sur le bouton d'action, le combat démarre directement
+    \item Un PNJ vaincu ne peut plus être combattu, ou réapparaît plus tard (à décider)
+    \item Exception : un PNJ \textbf{marchand}, qui ouvre l'écran d'échange au lieu d'un combat
+\end{itemize}
+
+\subsection{Combats au tour par tour}
+\begin{itemize}
+    \item Écran de combat dédié : le joueur d'un côté, le PNJ de l'autre, avec leurs barres de vie
+    \item À chaque tour, le joueur choisit une action dans un menu : \textbf{Attaquer}, \textbf{Manger}, \textbf{Fuir}
+    \item Dégâts calculés selon l'arme équipée, avec une part d'aléatoire
+    \item Le PNJ riposte ensuite
+    \item Victoire : récompenses ajoutées à l'inventaire. Défaite : le joueur revient au dernier point de repos, avec une pénalité légère
+    \item Option avancée : combat tactique sur une grille, avec déplacement des personnages comme dans Dofus
+\end{itemize}
+
+\subsection{Échange et armes}
+\begin{itemize}
+    \item Le marchand propose des armes contre des ressources (par exemple épée en bois = 5 bois)
+    \item Les armes ont des niveaux : bois, pierre, fer, cristal...
+    \item Une arme peut être améliorée en donnant des ressources, ce qui augmente ses dégâts
+    \item Le joueur équipe l'arme de son choix dans l'inventaire
+\end{itemize}
+
+\subsection{Sauvegarde}
+\begin{itemize}
+    \item Sauvegarde de la partie dans un fichier : position du joueur, PV, inventaire, armes, PNJ vaincus, objets déjà ramassés
+    \item Menu principal avec \textbf{Nouvelle partie} et \textbf{Charger une partie}
+    \item 3 emplacements de sauvegarde (option)
+    \item Sauvegarde manuelle depuis le menu pause, plus une sauvegarde automatique (option)
+\end{itemize}
+
+\subsection{Menus et interface}
+\begin{itemize}
+    \item Menu principal, menu pause, écran de game over
+    \item HUD en exploration : barre de vie, arme équipée
+    \item Messages à l'écran : \og Vous avez ramassé 1 pomme \fg{}, \og Victoire ! \fg{}, etc.
+\end{itemize}
+
+\subsection{Contrôles manette}
+
+\begin{center}
+\begin{tabular}{>{\raggedright}p{6cm} p{6cm}}
+    \toprule
+    \textbf{Action} & \textbf{Bouton} \\
+    \midrule
+    Se déplacer & Stick gauche ou croix \\
+    Interagir, valider & Bouton A (ou bouton 1) \\
+    Retour, annuler & Bouton B (ou bouton 2) \\
+    Ouvrir l'inventaire & Bouton X (ou bouton 3) \\
+    Pause, menu & Start \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+Les numéros de boutons varient selon les manettes, donc ils sont regroupés dans un seul fichier de configuration pour être faciles à modifier. Le clavier sert uniquement pour les tests pendant le développement, et sera désactivé dans la version finale.
+
+% ---------------- 5 ----------------
+\section{Contraintes techniques}
+
+\begin{itemize}
+    \item Langage C (C99), bibliothèque Allegro 5 (modules primitives, image, font, ttf, audio, acodec)
+    \item Environnement : CLion avec CMake, sous Windows
+    \item Gestion de version avec Git et GitHub, avec un commit régulier par chacun
+    \item 60 images par seconde, fenêtre de 1280 x 720
+    \item Code découpé en modules (.c et .h), sans variables globales inutiles
+    \item Graphismes : sprites dessinés par l'équipe ou ressources libres de droits (itch.io, OpenGameArt). Pas de sprites tirés de Dofus ou d'Animal Crossing, qui sont protégés.
+\end{itemize}
+
+% ---------------- 6 ----------------
+\section{Priorités}
+
+\subsection*{Version minimale (obligatoire)}
+\begin{itemize}
+    \item Carte qui défile avec le joueur au centre, collisions
+    \item Déplacements à la manette
+    \item Ramassage de pommes et inventaire simple
+    \item Un type de PNJ et un combat au tour par tour qui fonctionne
+    \item Menu principal et sauvegarde de base
+\end{itemize}
+
+\subsection*{Version intermédiaire}
+\begin{itemize}
+    \item Plusieurs ressources et plusieurs PNJ de niveaux différents
+    \item Marchand, échange contre des armes, amélioration des armes
+    \item Aliments qui augmentent le maximum de PV
+    \item Sprites animés, sons, musique
+\end{itemize}
+
+\subsection*{Version avancée (bonus)}
+\begin{itemize}
+    \item Plusieurs zones reliées entre elles (village, forêt, plage...)
+    \item Combat tactique sur grille, façon Dofus
+    \item Boss final
+    \item Cycle jour/nuit, réapparition des ressources
+    \item 3 emplacements de sauvegarde
+\end{itemize}
+
+% ---------------- 7 ----------------
+\section{Répartition proposée}
+
+\begin{itemize}
+    \item \textbf{Membre 1, moteur et contrôles :} boucle principale, machine à états, module manette, menus, pause
+    \item \textbf{Membre 2, monde et exploration :} carte en tuiles, caméra, collisions, déplacement et animation du joueur, objets sur la carte
+    \item \textbf{Membre 3, combat :} PNJ, déclenchement des combats, écran de combat, actions, calcul des dégâts, récompenses
+    \item \textbf{Membre 4, progression et données :} inventaire, nourriture et PV, marchand, armes et améliorations, sauvegarde et chargement
+\end{itemize}
+
+% ---------------- 8 ----------------
+\section{Livrables}
+
+\begin{itemize}
+    \item Code source sur GitHub
+    \item Jeu compilable et jouable à la manette
+    \item Ce cahier des charges
+    \item Rapport ou soutenance selon les consignes de l'école
+\end{itemize}
+
+\end{document}
