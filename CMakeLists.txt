@@ -9,6 +9,8 @@ add_executable(PROJET1_ING3APP
         jeu.c
         jeu.h
         Variable.h
+        joueur.h
+        joueur.c
 )
 
 if(WIN32)
