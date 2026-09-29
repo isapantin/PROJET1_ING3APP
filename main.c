@@ -1,19 +1,13 @@
 #include "jeu.h"
 #include "ecranAcceuil.h"
 #include "variable.h"
-
 #include <stdbool.h>
-
 
 int main(void)
 {
-    // Création du jeu
     Jeu jeu = {0};
-
-    // Événement Allegro
     ALLEGRO_EVENT event;
 
-    // Initialisation du jeu
     initialiserJeu(&jeu);
 
     bool fini = false;
@@ -34,83 +28,90 @@ int main(void)
             gererEcranAccueil(&jeu, &event);
         }
 
-        // Si le bouton QUITTER a été utilisé
+        // Quitter
         if (jeu.etat == ECRAN_QUITTER)
         {
             fini = true;
         }
 
-        // Touche enfoncée
-        if (event.type == ALLEGRO_EVENT_KEY_DOWN)
+        // Gestion du clavier uniquement pendant le jeu
+        if (jeu.etat == ECRAN_JEU)
         {
-            switch (event.keyboard.keycode)
+            // Touche enfoncée
+            if (event.type == ALLEGRO_EVENT_KEY_DOWN)
             {
-                case ALLEGRO_KEY_Z:
-                    jeu.haut = true;
-                    break;
+                switch (event.keyboard.keycode)
+                {
+                    case ALLEGRO_KEY_Z:
+                        jeu.haut = true;
+                        break;
 
-                case ALLEGRO_KEY_S:
-                    jeu.bas = true;
-                    break;
+                    case ALLEGRO_KEY_S:
+                        jeu.bas = true;
+                        break;
 
-                case ALLEGRO_KEY_Q:
-                    jeu.gauche = true;
-                    break;
+                    case ALLEGRO_KEY_Q:
+                        jeu.gauche = true;
+                        break;
 
-                case ALLEGRO_KEY_D:
-                    jeu.droite = true;
-                    break;
+                    case ALLEGRO_KEY_D:
+                        jeu.droite = true;
+                        break;
+                }
+            }
+
+            // Touche relâchée
+            if (event.type == ALLEGRO_EVENT_KEY_UP)
+            {
+                switch (event.keyboard.keycode)
+                {
+                    case ALLEGRO_KEY_Z:
+                        jeu.haut = false;
+                        break;
+
+                    case ALLEGRO_KEY_S:
+                        jeu.bas = false;
+                        break;
+
+                    case ALLEGRO_KEY_Q:
+                        jeu.gauche = false;
+                        break;
+
+                    case ALLEGRO_KEY_D:
+                        jeu.droite = false;
+                        break;
+                }
             }
         }
 
-        // Touche relâchée
-        if (event.type == ALLEGRO_EVENT_KEY_UP)
-        {
-            switch (event.keyboard.keycode)
-            {
-                case ALLEGRO_KEY_Z:
-                    jeu.haut = false;
-                    break;
-
-                case ALLEGRO_KEY_S:
-                    jeu.bas = false;
-                    break;
-
-                case ALLEGRO_KEY_Q:
-                    jeu.gauche = false;
-                    break;
-
-                case ALLEGRO_KEY_D:
-                    jeu.droite = false;
-                    break;
-            }
-        }
-
-        // Toutes les 1/60 secondes
+        // Mise à jour à chaque tick du timer
         if (event.type == ALLEGRO_EVENT_TIMER)
         {
-            deplacerJoueur(
-                &jeu.joueur,
-                jeu.haut,
-                jeu.bas,
-                jeu.gauche,
-                jeu.droite
-            );
+            if (jeu.etat == ECRAN_JEU)
+            {
+                deplacerJoueur(
+                    &jeu.joueur,
+                    jeu.haut,
+                    jeu.bas,
+                    jeu.gauche,
+                    jeu.droite
+                );
 
-            mettreAJourAnimation(
-                &jeu.joueur,
-                jeu.haut,
-                jeu.bas,
-                jeu.gauche,
-                jeu.droite
-            );
+                mettreAJourAnimation(
+                    &jeu.joueur,
+                    jeu.haut,
+                    jeu.bas,
+                    jeu.gauche,
+                    jeu.droite
+                );
+            }
 
             afficherJeu(&jeu);
         }
     }
 
-    // Libération
     libererJeu(&jeu);
 
     return 0;
 }
+
