@@ -7,6 +7,13 @@
 #include "joueur.h"
 
 
+// permet de savoir sur quel écran on se trouve
+typedef enum {
+    ECRAN_ACCUEIL,
+    ECRAN_JEU
+} EtatJeu;
+
+typedef struct {
 #define LARGEUR_ECRAN 1200
 #define HAUTEUR_ECRAN 800
 #define FPS 60
@@ -28,10 +35,15 @@ typedef struct
     bool gauche;
     bool droite;
 
+
+    //  écran actuellement affiché
+    EtatJeu etat;
+
 } Jeu;
 
 
 void initialiserJeu(Jeu *jeu);
+void libererJeu(Jeu *jeu);
 
 void afficherJeu(Jeu *jeu);
 

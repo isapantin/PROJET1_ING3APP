@@ -1,9 +1,24 @@
+#include "Variable.h"
 #include "jeu.h"
 
+int main(void) {
+    // Initialisation d'Allegro
+    assert(al_init());
+    assert(al_init_primitives_addon());
+    assert(al_install_keyboard());
 
 int main()
 {
     Jeu jeu;
+    // AJOUT : initialisation de la souris
+    assert(al_install_mouse());
+
+    // AJOUT : initialisation des polices
+    al_init_font_addon();
+
+    // Création du jeu
+    Jeu jeu = {0};
+    ALLEGRO_EVENT event;
 
     initialiserJeu(&jeu);
 
@@ -20,6 +35,20 @@ int main()
 
         // Fermer la fenêtre
         if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+        {
+            fini = true;
+        }
+
+        // AJOUT
+        // Gestion des clics sur l'écran d'accueil
+        if (jeu.etat == ECRAN_ACCUEIL)
+        {
+            gererEcranAccueil(&jeu, &event);
+        }
+
+        // AJOUT
+        // Si le bouton QUITTER a été utilisé
+        if (jeu.etat == -1)
         {
             fini = true;
         }
@@ -76,6 +105,8 @@ int main()
         // Toutes les 1/60 secondes
         if (event.type == ALLEGRO_EVENT_TIMER)
         {
+            afficherJeu(&jeu);
+            al_flip_display();
             // Déplacer le joueur
             deplacerJoueur(
                 &jeu.joueur,
@@ -101,6 +132,8 @@ int main()
         }
     }
 
+    // Libération
+    libererJeu(&jeu);
 
     libererJeu(&jeu);
 

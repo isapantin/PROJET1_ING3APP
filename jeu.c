@@ -30,6 +30,9 @@ void initialiserJeu(Jeu *jeu)
 
     assert(jeu->timer);
 
+    // AJOUT : au démarrage, on affiche l'accueil
+    jeu->etat = ECRAN_ACCUEIL;
+
 
     // Enregistrer les événements
     al_register_event_source(
@@ -40,6 +43,12 @@ void initialiserJeu(Jeu *jeu)
     al_register_event_source(
         jeu->queue,
         al_get_keyboard_event_source()
+    );
+
+    // AJOUT : permet de récupérer les mouvements/clics de souris
+    al_register_event_source(
+        jeu->queue,
+        al_get_mouse_event_source()
     );
 
     al_register_event_source(
@@ -70,6 +79,20 @@ void initialiserJeu(Jeu *jeu)
 void afficherJeu(Jeu *jeu)
 {
     // Fond noir
+    // AJOUT
+    // Si nous sommes sur l'écran d'accueil,
+    // on affiche le menu.
+    if (jeu->etat == ECRAN_ACCUEIL)
+    {
+        afficherEcranAccueil(jeu);
+
+        // On conserve ton al_flip_display()
+        al_flip_display();
+
+        return;
+    }
+
+    // TON CODE DE BASE CONSERVE
     al_clear_to_color(al_map_rgb(0, 0, 0));
 
 
