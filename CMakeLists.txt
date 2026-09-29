@@ -11,6 +11,10 @@ add_executable(PROJET1_ING3APP
         Variable.h
         joueur.h
         joueur.c
+        ecranAcceuil.c
+
+        # AJOUT
+        ecranAcceuil.h
 )
 
 if(WIN32)

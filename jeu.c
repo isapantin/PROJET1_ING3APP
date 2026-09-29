@@ -1,5 +1,8 @@
 #include "jeu.h"
 
+// AJOUT
+#include "ecranAcceuil.h"
+
 void initialiserJeu(Jeu *jeu) {
 
     jeu->fenetre = al_create_display(LARGEUR, HAUTEUR);
@@ -12,6 +15,9 @@ void initialiserJeu(Jeu *jeu) {
     jeu->timer = al_create_timer(1.0 / FPS);
     assert(jeu->timer);
 
+    // AJOUT : au démarrage, on affiche l'accueil
+    jeu->etat = ECRAN_ACCUEIL;
+
     al_register_event_source(
         jeu->queue,
         al_get_display_event_source(jeu->fenetre)
@@ -20,6 +26,12 @@ void initialiserJeu(Jeu *jeu) {
     al_register_event_source(
         jeu->queue,
         al_get_keyboard_event_source()
+    );
+
+    // AJOUT : permet de récupérer les mouvements/clics de souris
+    al_register_event_source(
+        jeu->queue,
+        al_get_mouse_event_source()
     );
 
     al_register_event_source(
@@ -39,6 +51,20 @@ void libererJeu(Jeu *jeu) {
 
 void afficherJeu(Jeu *jeu)
 {
+    // AJOUT
+    // Si nous sommes sur l'écran d'accueil,
+    // on affiche le menu.
+    if (jeu->etat == ECRAN_ACCUEIL)
+    {
+        afficherEcranAccueil(jeu);
+
+        // On conserve ton al_flip_display()
+        al_flip_display();
+
+        return;
+    }
+
+    // TON CODE DE BASE CONSERVE
     al_clear_to_color(al_map_rgb(0, 0, 0));
 
     al_flip_display();
