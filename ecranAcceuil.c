@@ -6,8 +6,8 @@
 // AJOUT
 void afficherEcranAccueil(Jeu *jeu)
 {
-    // AJOUT
     ALLEGRO_FONT *font = al_create_builtin_font();
+
 
     // AJOUT
     int sourisX = 0;
@@ -25,7 +25,7 @@ void afficherEcranAccueil(Jeu *jeu)
 
     // AJOUT
     // Fond
-    al_clear_to_color(al_map_rgb(20, 25, 45));
+    al_clear_to_color(al_map_rgb(18, 79, 105));
 
     // AJOUT
     // Grand bandeau supérieur
@@ -45,18 +45,18 @@ void afficherEcranAccueil(Jeu *jeu)
         LARGEUR / 2,
         65,
         ALLEGRO_ALIGN_CENTER,
-        "MON JEU"
+        "ING1 SURVIVOR"
     );
 
     // AJOUT
     // Sous-titre
     al_draw_text(
         font,
-        al_map_rgb(170, 180, 205),
+        al_map_rgb(89, 135, 156),
         LARGEUR / 2,
         105,
         ALLEGRO_ALIGN_CENTER,
-        "Bienvenue dans votre aventure"
+        "Vas-tu survivre à ta première année ?"
     );
 
     /*
