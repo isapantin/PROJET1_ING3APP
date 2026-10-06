@@ -1,6 +1,7 @@
 #include "Variable.h"
 #include "jeu.h"
 #include "ecranAcceuil.h"
+#include "ecranReglage.h"
 
 int main(void) {
 
@@ -39,6 +40,12 @@ int main(void) {
         if (jeu.etat == ECRAN_ACCUEIL)
         {
             gererEcranAccueil(&jeu, &event);
+        }
+
+        // AJOUT : gestion de l'écran des réglages
+        if (jeu.etat == ECRAN_REGLAGES)
+        {
+            gererEcranReglages(&jeu, &event);
         }
 
         // Si le bouton QUITTER a été utilisé

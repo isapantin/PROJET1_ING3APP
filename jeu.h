@@ -17,7 +17,8 @@ typedef enum
 {
     ECRAN_ACCUEIL,
     ECRAN_JEU,
-    ECRAN_QUITTER
+    ECRAN_QUITTER,
+    ECRAN_REGLAGES
 } EtatJeu;
 
 
@@ -39,6 +40,7 @@ typedef struct Jeu
 
     // Écran actuellement affiché
     EtatJeu etat;
+    EtatJeu etatPrecedent;
 
 } Jeu;
 

@@ -12,6 +12,7 @@ add_executable(PROJET1_ING3APP
         joueur.h
         joueur.c
         ecranAcceuil.c
+        ecranReglage.c
 
         # AJOUT
         ecranAcceuil.h

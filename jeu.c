@@ -2,6 +2,7 @@
 #include "ecranAcceuil.h"
 #include "variable.h"
 #include <assert.h>
+#include "ecranReglage.h"
 
 
 void initialiserJeu(Jeu *jeu)
@@ -52,6 +53,14 @@ void initialiserJeu(Jeu *jeu)
         al_get_keyboard_event_source()
     );
 
+    jeu->etatPrecedent = ECRAN_ACCUEIL;
+
+    al_register_event_source(
+        jeu->queue,
+        al_get_display_event_source(jeu->fenetre)
+    );
+
+
     // AJOUT : permet de récupérer les mouvements/clics de souris
     al_register_event_source(
         jeu->queue,
@@ -98,9 +107,14 @@ void afficherJeu(Jeu *jeu)
 
         return;
     }
+    if (jeu->etat == ECRAN_REGLAGES)
+    {
+        afficherEcranReglages(jeu);
+        return;
+    }
 
-    // TON CODE DE BASE CONSERVE
     al_clear_to_color(al_map_rgb(0, 0, 0));
+    al_flip_display();
 
 
     // Récupérer l'image actuelle du joueur

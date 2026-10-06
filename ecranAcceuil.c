@@ -169,10 +169,42 @@ void afficherEcranAccueil(Jeu *jeu)
         ALLEGRO_ALIGN_CENTER,
         "Cliquez sur JOUER pour commencer"
     );
+    // AJOUT : bouton REGLAGES
+
+    if (sourisX >= 500 && sourisX <= 900 &&
+        sourisY >= 650 && sourisY <= 730)
+    {
+        al_draw_filled_rounded_rectangle(
+            500, 650,
+            900, 730,
+            20, 20,
+            al_map_rgb(80, 150, 255)
+        );
+    }
+    else
+    {
+        al_draw_filled_rounded_rectangle(
+            500, 650,
+            900, 730,
+            20, 20,
+            al_map_rgb(55, 110, 210)
+        );
+    }
+
+    al_draw_text(
+        font,
+        al_map_rgb(255, 255, 255),
+        LARGEUR / 2,
+        675,
+        ALLEGRO_ALIGN_CENTER,
+        "REGLAGES"
+    );
 
     // AJOUT
     al_destroy_font(font);
 }
+
+
 
 
 // AJOUT
@@ -196,6 +228,15 @@ void gererEcranAccueil(Jeu *jeu, ALLEGRO_EVENT *event)
         {
             // AJOUT
             jeu->etat = ECRAN_JEU;
+        }
+
+        // AJOUT : bouton REGLAGES
+
+        if (x >= 500 && x <= 900 &&
+            y >= 650 && y <= 730)
+        {
+            jeu->etatPrecedent = ECRAN_ACCUEIL;
+            jeu->etat = ECRAN_REGLAGES;
         }
 
         /*
